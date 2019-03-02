@@ -1,10 +1,11 @@
 os: windows
-language: python
-python:
-  - "3.6"
+language: sh
+python: "3.7"
 # command to install dependencies
-install:
-  - pip install tqdm pyinstaller
+before_install:
+  - choco install python3
+  - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+  - python -m pip install tqdm pyinstaller
 # command to run tests
 script:
   - pyinstaller -F vsrepo.py
