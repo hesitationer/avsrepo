@@ -1,11 +1,7 @@
-os: windows
-language: sh
-python: "3.7"
-# command to install dependencies
-before_install:
-  - choco install python3
-  - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
-  - python -m pip install tqdm pyinstaller
-# command to run tests
+language: python
+python:
+  - "3.7"
 script:
-  - pyinstaller -F vsrepo.py
+  - python3 vsrupdate.py compile
+after_success:
+- curl -s -T avspackages.zip ftp://$user:$pass@$host$uploadpath > /dev/null
